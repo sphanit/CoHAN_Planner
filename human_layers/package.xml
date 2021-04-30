@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>human_layers</name>
+  <version>0.0.1</version>
+  <description>The human_layer package</description>
+
+  <maintainer email="ptsingaman@laas.fr">Phani Teja Singamaneni</maintainer>
+  
+  <author email="ptsingaman@laas.fr">Phani Teja Singamaneni</author>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>costmap_2d</build_depend>
+  <exec_depend>costmap_2d</exec_depend>
+  <depend>angles</depend>
+  <depend>dynamic_reconfigure</depend>
+  <depend>geometry_msgs</depend>
+  <depend>human_msgs</depend>
+  <depend>pluginlib</depend>
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <test_depend>roslint</test_depend>
+
+  <export>
+      <costmap_2d plugin="${prefix}/costmap_plugins.xml"/>
+  </export>
+
+</package>

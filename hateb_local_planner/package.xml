@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>hateb_local_planner</name>
+  <version>0.1.0</version>
+  <description>
+    The hateb_local_planner package implements a plugin to the base_local_planner of the 2D navigation stack.
+    It implements a human-robot multi-context and cooperative navigation planner that predicts trajectories for human and plans accordingly
+    a trajectory for robot that satisfies certain kinodynamic and social constraints.
+  </description>
+
+  <maintainer email="ptsingaman@laas.fr">Phani Teja Singamaneni</maintainer>
+
+  <author email="ptsingaman@laas.fr">Phani Teja Singamaneni</author>
+  <author email="christoph.roesmann@tu-dortmund.de">Christoph Rösmann</author>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <build_depend>cmake_modules</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>tf2_eigen</build_depend>
+  <build_depend>tf2_geometry_msgs</build_depend>
+
+  <build_export_depend>message_runtime</build_export_depend>
+  <exec_depend>message_runtime</exec_depend>
+
+  <depend>base_local_planner</depend>
+  <depend>costmap_2d</depend>
+  <depend>costmap_converter</depend>
+  <depend>dynamic_reconfigure</depend>
+  <depend>geometry_msgs</depend>
+  <depend>interactive_markers</depend>
+  <depend>libg2o</depend>
+  <depend>nav_core</depend>
+  <depend>nav_msgs</depend>
+  <depend>mbf_costmap_core</depend>
+  <depend>mbf_msgs</depend>
+  <depend>pluginlib</depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>human_msgs</depend>
+  <depend>human_path_prediction</depend>
+  <depend>std_srvs</depend>
+  <depend>visualization_msgs</depend>
+
+  <export>
+    <nav_core plugin="${prefix}/hateb_local_planner_plugin.xml"/>
+    <mbf_costmap_core plugin="${prefix}/hateb_local_planner_plugin.xml"/>
+  </export>
+</package>

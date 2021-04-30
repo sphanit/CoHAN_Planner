@@ -1,0 +1,8 @@
+<library path="lib/libhuman_layers">
+  <class type="human_layers::StaticHumanLayer" base_class_type="costmap_2d::Layer">
+    <description>Uses people information to change the costmap</description>
+  </class>
+  <class type="human_layers::HumanVisibilityLayer" base_class_type="costmap_2d::Layer">
+    <description>Uses people information to change the costmap</description>
+  </class>
+</library>

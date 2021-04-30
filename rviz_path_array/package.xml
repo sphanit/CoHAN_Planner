@@ -1,0 +1,27 @@
+<package>
+  <name>rviz_path_array</name>
+  <version>0.1.0</version>
+  <description>Path array display plugin for rviz</description>
+
+  <maintainer email="ptsingaman@laas.fr">Phani Teja Singamaneni</maintainer>
+
+  <author email="ptsingaman@laas.fr">Phani Teja Singamaneni</author>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <build_depend>qtbase5-dev</build_depend>
+  <build_depend>rviz</build_depend>
+  <build_depend>human_msgs</build_depend>
+
+  <run_depend>libqt5-core</run_depend>
+  <run_depend>libqt5-gui</run_depend>
+  <run_depend>libqt5-widgets</run_depend>
+  <run_depend>rviz</run_depend>
+  <run_depend>human_msgs</run_depend>
+
+  <export>
+      <rviz plugin="${prefix}/plugin_description.xml"/>
+  </export>
+</package>

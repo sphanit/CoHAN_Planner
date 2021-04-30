@@ -1,0 +1,10 @@
+<library path="lib/librviz_path_array">
+  <class name="rviz_path_array/HumanPathArray"
+         type="rviz_path_array::HumanPathArrayDisplay"
+         base_class_type="rviz::Display">
+    <description>
+      Displays human_msgs/HumanPathArray messages.
+    </description>
+    <message_type>human_msgs/HumanPathArray</message_type>
+  </class>
+</library>

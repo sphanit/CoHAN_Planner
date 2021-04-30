@@ -1,0 +1,13 @@
+<library path="lib/libhateb_local_planner">
+	<class name="hateb_local_planner/HATebLocalPlannerROS" type="hateb_local_planner::HATebLocalPlannerROS" base_class_type="nav_core::BaseLocalPlanner">
+		<description>
+			The hateb_local_planner package implements a plugin
+			to the base_local_planner of the 2D navigation stack.
+		</description>
+	</class>
+	<class name="hateb_local_planner/HATebLocalPlannerROS" type="hateb_local_planner::HATebLocalPlannerROS" base_class_type="mbf_costmap_core::CostmapController">
+		<description>
+			Same plugin implemented MBF CostmapController's extended interface.
+		</description>
+	</class>
+</library>

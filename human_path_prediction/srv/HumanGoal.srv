@@ -1,0 +1,4 @@
+human_path_prediction/HumanPose[]  goals
+---
+bool                         success
+string                       message

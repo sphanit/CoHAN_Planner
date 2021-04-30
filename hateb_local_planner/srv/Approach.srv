@@ -1,0 +1,6 @@
+# Start approach behavior
+
+uint64 human_id
+---
+bool success
+string message

@@ -1,0 +1,7 @@
+# Get optimized timed elastic bands for given humans and robot plans
+
+nav_msgs/Path robot_plan
+human_msgs/HumanPathArray human_path_array
+---
+bool success
+string message
