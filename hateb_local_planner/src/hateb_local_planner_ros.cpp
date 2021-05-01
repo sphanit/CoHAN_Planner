@@ -716,6 +716,8 @@ uint32_t HATebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::Pose
             change_mode = 0;
             backed_off = false;
             stuck = false;
+	    if(humans_states_.states[visible_human_ids[0]-1] != hateb_local_planner::HumanState::MOVING)
+	      humans_states_.states[visible_human_ids[0]-1] = hateb_local_planner::HumanState::STATIC;
             // goal_ctrl = true;
           }
         }
@@ -731,6 +733,8 @@ uint32_t HATebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::Pose
       change_mode = 0;
       backed_off = false;
       stuck = false;
+      if(humans_states_.states[visible_human_ids[0]-1] != hateb_local_planner::HumanState::MOVING)
+	humans_states_.states[visible_human_ids[0]-1] = hateb_local_planner::HumanState::STATIC;
     }
 
     human_path_prediction::HumanPosePredict predict_srv;
