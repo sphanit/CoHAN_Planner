@@ -38,10 +38,8 @@
  #include <hateb_local_planner/backoff.h>
  #define NODE_NAME "Backoff_recovery"
  #define ROBOT_FRAME_ID "base_link"
- #define MAP_FRAME_ID "map"
  #define CURRENT_GOAL_TOPIC_NAME "/move_base/current_goal"
  #define PUBLISH_GOAL_TOPIC "/move_base_simple/goal"
- // #define GET_PLAN_SRV_NAME "make_plan"
 
 
  namespace hateb_local_planner {
@@ -51,11 +49,6 @@
 
  void Backoff::initialize(costmap_2d::Costmap2DROS* costmap_ros, bool is_real) {
    // get private node handle
-   if(is_real){
-     #undef MAP_FRAME_ID
-     #define MAP_FRAME_ID "odom_combined"
-   }
-   
    ros::NodeHandle nh;
    costmap_ros_ = costmap_ros;
    costmap_ = costmap_ros_->getCostmap();
@@ -73,6 +66,11 @@
    last_goal_time = ros::Time::now();
    last_rot_time = ros::Time::now();
    last_time = ros::Time::now();
+
+   map_frame = "map";
+   if(is_real){
+     map_frame = "odom_combined";
+}
 
   ROS_DEBUG_NAMED(NODE_NAME, "node %s initialized", NODE_NAME);
  }
@@ -103,7 +101,7 @@
    // get robot pose
    bool transform_found = false;
    try {
-     tf_.lookupTransform(MAP_FRAME_ID, ROBOT_FRAME_ID, ros::Time(0),
+     tf_.lookupTransform(map_frame, ROBOT_FRAME_ID, ros::Time(0),
                          robot_to_map_tf);
      transform_found = true;
    } catch (tf::LookupException &ex) {
@@ -143,12 +141,12 @@
      tf::transformTFToMsg(start_pose_tr, start_pose);
 
      nav_msgs::GetPlan get_plan_srv;
-     get_plan_srv.request.start.header.frame_id = MAP_FRAME_ID;
+     get_plan_srv.request.start.header.frame_id = map_frame;
      get_plan_srv.request.start.header.stamp = now;
      tf::poseTFToMsg(robot_to_map_tf, get_plan_srv.request.start.pose);
 
      get_plan_srv.request.goal.header.stamp = now;
-     get_plan_srv.request.goal.header.frame_id = MAP_FRAME_ID;
+     get_plan_srv.request.goal.header.frame_id = map_frame;
 
      if(abs(prev_start_pose.translation.x-start_pose.translation.x)<0.01 && abs(prev_start_pose.translation.y-start_pose.translation.y)<0.01)
        count++;
@@ -229,7 +227,7 @@
      // }
  }
     unsigned int mx,my;
-    goal_.header.frame_id = MAP_FRAME_ID;
+    goal_.header.frame_id = map_frame;
     goal_.header.stamp = now;
 
     if(costmap_->worldToMap(left_pose.translation.x,left_pose.translation.y,mx,my)){
@@ -264,7 +262,7 @@
       auto cost=costmap_->getCost(mx,my);
 
 		/*
-			if(old_goal_.header.frame_id==MAP_FRAME_ID){
+			if(old_goal_.header.frame_id==map_frame){
 				if(fabs(goal_.pose.position.x-old_goal_.pose.position.x)>0.2 && fabs(goal_.pose.position.y-old_goal_.pose.position.y)>0.2){
 					goal_ = old_goal_;
 				}
@@ -305,9 +303,9 @@
  bool Backoff::setbackGoal(){
 	 //Transform current goal to odom frame
 	 //geometry_msgs::TransformStamped stmptransform;
-	 //tf_.waitForTransform(MAP_FRAME_ID, "map", ros::Time(0), ros::Duration(0.5));
-	 //tf_.lookupTransform(MAP_FRAME_ID, "map", ros::Time(0),stmptransform);
-	 //tf_.transformPose(MAP_FRAME_ID, current_goal_,goal_);
+	 //tf_.waitForTransform(map_frame, "map", ros::Time(0), ros::Duration(0.5));
+	 //tf_.lookupTransform(map_frame, "map", ros::Time(0),stmptransform);
+	 //tf_.transformPose(map_frame, current_goal_,goal_);
 	 ROS_INFO("Setting back the goal !!");
    goal_ = current_goal_;
    goal_.header.stamp=ros::Time::now();
@@ -323,14 +321,14 @@
    start_pose_tr.setRotation(tf::createQuaternionFromYaw(0.0));
    //Transform current goal to map frame
    //tf::StampedTransform stmptransform;
-   tf_.waitForTransform("map", MAP_FRAME_ID, ros::Time(0), ros::Duration(0.5));
-   //tf_.lookupTransform("map", MAP_FRAME_ID, ros::Time(0),stmptransform);
+   tf_.waitForTransform("map", map_frame, ros::Time(0), ros::Duration(0.5));
+   //tf_.lookupTransform("map", map_frame, ros::Time(0),stmptransform);
 	 start_pose_tr = robot_to_map_tf * start_pose_tr;
 	 geometry_msgs::QuaternionStamped quat;
 	 quat.header.frame_id = "map";
 	 auto temp = tf::createQuaternionFromYaw(ang_theta);
    tf::quaternionTFToMsg(temp, quat.quaternion);
-	 tf_.transformQuaternion(MAP_FRAME_ID, quat, quat);
+	 tf_.transformQuaternion(map_frame, quat, quat);
 
 	 tf::Quaternion quat_new;
    tf::quaternionMsgToTF(quat.quaternion, quat_new);
@@ -340,7 +338,7 @@
    goal_.pose.position.x = start_pose.translation.x;
    goal_.pose.position.y = start_pose.translation.y;
    goal_.pose.orientation = start_pose.rotation;
-	 tf_.transformPose(MAP_FRAME_ID, goal_,goal_);
+	 tf_.transformPose(map_frame, goal_,goal_);
 
    RAND_ROTATE = true;
    last_rot_time = ros::Time::now();

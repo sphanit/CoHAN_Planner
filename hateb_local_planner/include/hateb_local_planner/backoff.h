@@ -62,6 +62,7 @@ class Backoff {
   bool timeOut();
 
  private:
+  std::string map_frame;
   geometry_msgs::PoseStamped goal_, old_goal_;
 
   tf::TransformListener tf_;
