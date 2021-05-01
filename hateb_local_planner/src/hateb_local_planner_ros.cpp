@@ -74,9 +74,9 @@
 #include "g2o/solvers/cholmod/linear_solver_cholmod.h"
 #include <string>
 
-// register this planner both as a BaseLocalPlanner and as a MBF's CostmapController plugin
+// register this planner both as a BaseLocalPlanner CostmapController plugin
 PLUGINLIB_EXPORT_CLASS(hateb_local_planner::HATebLocalPlannerROS, nav_core::BaseLocalPlanner)
-PLUGINLIB_EXPORT_CLASS(hateb_local_planner::HATebLocalPlannerROS, mbf_costmap_core::CostmapController)
+
 
 namespace hateb_local_planner
 {

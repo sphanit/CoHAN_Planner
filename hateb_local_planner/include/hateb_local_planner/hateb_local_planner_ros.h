@@ -117,7 +117,7 @@ enum HumanState {STATIC,MOVING,STOPPED,BLOCKED,NO_STATE};
   * interfaces, so the hateb_local_planner plugin can be used both in move_base and move_base_flex (MBF).
   * @todo Escape behavior, more efficient obstacle handling
   */
-class HATebLocalPlannerROS : public nav_core::BaseLocalPlanner, public mbf_costmap_core::CostmapController
+class HATebLocalPlannerROS : public nav_core::BaseLocalPlanner
 {
 
 public:

@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
+add_compile_options(-std=c++11)
+
+
 project(rviz_path_array)
 find_package(catkin REQUIRED COMPONENTS rviz human_msgs)
 catkin_package()
