@@ -18,7 +18,7 @@ Go [here](https://github.com/sphanit/CoHAN_Planner/tree/master) for ros-melodic 
 	```
 	mkdir -p cohan_ws/src
 	cd 	cohan_ws/src
-	git clone https://github.com/sphanit/CoHAN_Planner.git -b master
+	git clone https://github.com/sphanit/CoHAN_Planner.git -b kinetic-devel
 	cd ..	
 	```
 4. Install the dependencies using rosdep
