@@ -36,7 +36,7 @@ Go [here](https://github.com/sphanit/CoHAN_Planner/tree/master) for ros-melodic 
 2. To include humans into the system, the tracked humans or the known humans have to be published on ``` /tracked_humans ``` topic following the message structure provided [here](https://github.com/sphanit/CoHAN_Planner/blob/master/human_msgs/msg/TrackedHumans.msg). All the message structures can be found in the ``` human_msgs``` package. The default segement for navigation is TORSO and hence care has to be taken while setting the [type](https://github.com/sphanit/CoHAN_Planner/blob/master/human_msgs/msg/TrackedSegmentType.msg) of ```TrackedSegment```.  
 
 3. Once the ```/tracked_humans``` topic is available, the system automatically starts planning human aware paths and trajectories. 
-4. [CoHAN_Navigation](https://github.com/sphanit/CoHAN_Navigation.git) package provides some configuration files and examples for testing the system. It is strongly suggested to check these before you start experimenting.
+4. [CoHAN_Navigation](https://github.com/sphanit/CoHAN_Navigation/tree/kinetic-devel) package provides some configuration files and examples for testing the system. It is strongly suggested to check these before you start experimenting.
  
 
 
