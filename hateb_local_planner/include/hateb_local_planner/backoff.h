@@ -42,11 +42,9 @@
 #include <tf/transform_listener.h>
 #include <std_srvs/SetBool.h>
 #include <std_srvs/Trigger.h>
-#include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
 #include <costmap_2d/costmap_2d_ros.h>
 #include <nav_msgs/GetPlan.h>
-#include <move_base_msgs/MoveBaseActionResult.h>
 #include <tf2/utils.h>
 
 namespace hateb_local_planner {

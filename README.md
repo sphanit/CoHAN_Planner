@@ -28,6 +28,7 @@ Go [here](https://github.com/sphanit/CoHAN_Planner/tree/kinetic-devel) for ros-k
 	```
 	catkin build
 	```
+	Note: catkin build might make the cpu busy utilizing all threads if not configured properly, you can instead use it with less jobs. For example, ```catkin build -j4```, can run up to four jobs at a time.
 	
 # Usage
 1. Our packages are built as plugins to standard 2D navigation stack and hence they follow the same topics to publish navigation goals.
