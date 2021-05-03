@@ -14,6 +14,7 @@ Go [here](https://github.com/sphanit/CoHAN_Planner/tree/master) for ros-melodic 
 	apt install python-pip python-catkin-tools
 	pip install scipy
 	```
+	If ```pip install scipy``` doesn't work, do ```apt install python-scipy```
 3. Download the git repository
 	```
 	mkdir -p cohan_ws/src
