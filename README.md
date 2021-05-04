@@ -10,10 +10,10 @@ Go [here](https://github.com/sphanit/CoHAN_Planner/tree/kinetic-devel) for ros-k
 1. This installation assumes that the [ROS](http://wiki.ros.org/ROS/Installation) is already installed along with the [2D navigation stack](http://wiki.ros.org/navigation). Otherwise please install them before continuing to next steps.
 2. Install the requirements
 	```
-	apt install python-pip python-catkin-tools
+	sudo apt install python-pip python-catkin-tools
 	pip install scipy
 	```
-3. Download the git repository
+3. Clone the git repository
 	```
 	mkdir -p cohan_ws/src
 	cd 	cohan_ws/src
