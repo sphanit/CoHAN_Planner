@@ -10,10 +10,10 @@ Go [here](https://github.com/sphanit/CoHAN_Planner/tree/master) for ros-melodic 
 1. This installation assumes that the [ROS](http://wiki.ros.org/ROS/Installation) is already installed. Otherwise, please install it before continuing to the next steps. Since, CoHAN is built majorly on ros-melodic, it uses tf2 and is **not compatible** with the standard version of [2D navigation stack](http://wiki.ros.org/navigation). For this installation we use a custom version.
 2. Install the requirements
 	```
-	apt install python-pip python-catkin-tools
+	sudo apt install python-pip python-catkin-tools
 	pip install scipy
 	```
-	If ```pip install scipy``` doesn't work, do ```apt install python-scipy```
+	If ```pip install scipy``` doesn't work, do ```sudo apt install python-scipy```
 3. Clone the git repositories (CoHAN and navigation)
 	```
 	mkdir -p cohan_ws/src
