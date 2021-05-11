@@ -4,6 +4,8 @@ The CoHAN Planner provides a set of packages for the Human-Aware Robot Navigatio
 
 The system uses [Human-Aware Timed Elastic Band](https://hal.laas.fr/hal-02922029/file/Ro_Man_2020.pdf) (hateb) local planner for human-aware trajectory planning which is based on [teb_local_planner](https://github.com/rst-tu-dortmund/teb_local_planner) ROS package. 
 ![](https://github.com/sphanit/images/blob/main/cohan.png)
+
+
 Go [here](https://github.com/sphanit/CoHAN_Planner/tree/kinetic-devel) for ros-kinetic instalaltion guide.
 
 # Installation (ros-melodic)
