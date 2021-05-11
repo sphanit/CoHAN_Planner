@@ -11,7 +11,6 @@ from human_msgs.msg import TrackedHumans, TrackedHuman, TrackedSegmentType
 from human_path_prediction.msg import PredictedGoal
 from scipy.stats import multivariate_normal
 from std_srvs.srv import SetBool, Trigger, TriggerResponse
-import matplotlib.pyplot as plt
 EPS = 1e-12
 
 class PredictGoal(object):
