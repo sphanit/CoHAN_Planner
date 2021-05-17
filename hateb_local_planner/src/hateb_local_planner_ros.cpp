@@ -296,8 +296,8 @@ void  HATebLocalPlannerROS::humansCB(const human_msgs::TrackedHumans &tracked_hu
   std::vector<double> humans_behind;
   // std::vector<bool> humans_behind_ids;
 
-	geometry_msgs::TransformStamped transformStamped;
-	transformStamped = tf_->lookupTransform("map", "base_link",ros::Time(0),ros::Duration(0.5));
+  geometry_msgs::TransformStamped transformStamped;
+  transformStamped = tf_->lookupTransform("map", "base_link",ros::Time(0),ros::Duration(0.5));
   auto xpos = transformStamped.transform.translation.x;
   auto ypos = transformStamped.transform.translation.y;
   auto ryaw = tf2::getYaw(transformStamped.transform.rotation);
@@ -588,6 +588,7 @@ uint32_t HATebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::Pose
   auto prune_start_time = ros::Time::now();
   pruneGlobalPlan(*tf_, robot_pose, global_plan_, cfg_.trajectory.global_plan_prune_distance);
   auto prune_time = ros::Time::now() - prune_start_time;
+
   // Transform global plan to the frame of interest (w.r.t. the local costmap)
   auto transform_start_time = ros::Time::now();
   PlanCombined transformed_plan_combined;
