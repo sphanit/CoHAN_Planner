@@ -958,6 +958,7 @@ uint32_t HATebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::Pose
   default:
     break;
   }
+	
   std::string mode;
   if(isMode==-1 || isDistMax){
     mode = "SingleBand";
@@ -972,7 +973,10 @@ uint32_t HATebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::Pose
     mode = "Backoff";
   }
   logs+="Mode: " + mode+", ";
-  log_pub_.publish(logs);
+
+  std_msgs::String log_msg;
+  log_msg.data = logs;
+  log_pub_.publish(log_msg);
 
   auto human_time = ros::Time::now() - human_start_time;
 
