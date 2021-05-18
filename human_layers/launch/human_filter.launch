@@ -1,0 +1,10 @@
+<launch>
+  <arg name="simulator" default="stage" />
+
+  <node pkg="human_layers" type="human_filter.py" name="human_filter_laser" output="screen" if="$(eval 'stage'==arg('simulator'))"/>
+
+  <node pkg="human_layers" type="human_filter.py" name="human_filter_laser" output="screen" if="$(eval 'morse'==arg('simulator'))">
+    <remap from="base_scan" to="scan"/>
+  </node>
+
+</launch>
