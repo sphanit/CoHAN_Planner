@@ -806,6 +806,9 @@ uint32_t HATebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::Pose
           continue;
         }
 
+        if(isMode >= 1)
+          continue;
+
         // transform human plans
         HumanPlanCombined human_plan_combined;
         auto &transformed_vel = predicted_humans_poses.start_velocity;
