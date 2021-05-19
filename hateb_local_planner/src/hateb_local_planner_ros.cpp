@@ -707,6 +707,8 @@ uint32_t HATebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::Pose
     }
 
     if(isDistMax || !found){
+      humans_via_points_map_.clear();
+      
       if(visible_human_ids.size() > 0){
       updateHumanViaPointsContainers(transformed_human_plan_vel_map,
                                      cfg_.trajectory.global_plan_viapoint_sep);
