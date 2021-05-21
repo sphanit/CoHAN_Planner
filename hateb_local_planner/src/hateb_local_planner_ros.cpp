@@ -212,8 +212,6 @@ void HATebLocalPlannerROS::initialize(std::string name, tf2_ros::Buffer* tf, cos
 
     optimize_server_ = nh.advertiseService(OPTIMIZE_SRV_NAME, &HATebLocalPlannerROS::optimizeStandalone, this);
     approach_server_ = nh.advertiseService(APPROACH_SRV_NAME, &HATebLocalPlannerROS::setApproachID, this);
-
-
     humans_sub_ = nh.subscribe(HUMANS_SUB_TOPIC, 1, &HATebLocalPlannerROS::humansCB, this);
 
     // op_costs_pub_ = nh.advertise<hateb_local_planner::OptimizationCostArray>( OP_COSTS_TOPIC, 1);
@@ -243,6 +241,7 @@ void HATebLocalPlannerROS::initialize(std::string name, tf2_ros::Buffer* tf, cos
     initialized_ = true;
 
     ROS_DEBUG("hateb_local_planner plugin initialized.");
+
   }
   else
   {
@@ -708,7 +707,7 @@ uint32_t HATebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::Pose
 
     if(isDistMax || !found){
       humans_via_points_map_.clear();
-      
+
       if(visible_human_ids.size() > 0){
       updateHumanViaPointsContainers(transformed_human_plan_vel_map,
                                      cfg_.trajectory.global_plan_viapoint_sep);
@@ -1194,6 +1193,18 @@ bool HATebLocalPlannerROS::isGoalReached()
     backed_off =  false;
     reset_states=true;
     stuck_human_id = -1;
+
+    //Action client for Docking
+    DockClient docking_client_("docking_node/dock",true);
+
+    while(!docking_client_.waitForServer()){
+      ROS_INFO("Waiting for docking server to start");
+    }
+    base_nav::DockGoal tar_goal;
+    tar_goal.targetPose = global_plan_.back();
+    docking_client_.sendGoal(tar_goal);
+    ROS_INFO("Docking");
+
     return true;
   }
   return false;

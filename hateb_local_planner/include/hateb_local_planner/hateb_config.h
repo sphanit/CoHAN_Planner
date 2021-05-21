@@ -386,7 +386,7 @@ public:
     goal_tolerance.xy_goal_tolerance = 0.2;
     goal_tolerance.yaw_goal_tolerance = 0.2;
     goal_tolerance.free_goal_vel = false;
-    goal_tolerance.complete_global_plan = true;
+    goal_tolerance.complete_global_plan = false;
 
     // Obstacles
 

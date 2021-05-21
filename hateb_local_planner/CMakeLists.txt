@@ -29,6 +29,7 @@ find_package(catkin REQUIRED COMPONENTS
   human_path_prediction
   human_msgs
   visualization_msgs
+  base_nav
 )
 message(STATUS "System: ${CMAKE_SYSTEM}")
 ## System dependencies are found with CMake's conventions
@@ -170,6 +171,7 @@ catkin_package(
         tf2_ros
         human_msgs
 	visualization_msgs
+  base_nav
   DEPENDS SUITESPARSE G2O
 )
 

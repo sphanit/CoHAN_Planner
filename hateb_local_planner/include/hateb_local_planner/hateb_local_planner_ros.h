@@ -106,6 +106,11 @@
 // Backoff recovery
 #include <hateb_local_planner/backoff.h>
 
+// Docking
+#include <actionlib/client/simple_action_client.h>
+#include <base_nav/DockAction.h>
+
+typedef  actionlib::SimpleActionClient<base_nav::DockAction> DockClient;
 
 namespace hateb_local_planner
 {
