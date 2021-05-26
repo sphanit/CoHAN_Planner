@@ -137,6 +137,10 @@ public:
     double xy_goal_tolerance; //!< Allowed final euclidean distance to the goal position
     bool free_goal_vel; //!< Allow the robot's velocity to be nonzero (usally max_vel) for planning purposes
     bool complete_global_plan; // true prevents the robot from ending the path early when it cross the end goal
+    bool use_docking;
+    std::string goal_frame_id;
+    double xy_goal_tolerance_dock;
+    double yaw_goal_tolerance_dock;
   } goal_tolerance; //!< Goal tolerance related parameters
 
   //! Obstacle related parameters
@@ -386,7 +390,12 @@ public:
     goal_tolerance.xy_goal_tolerance = 0.2;
     goal_tolerance.yaw_goal_tolerance = 0.2;
     goal_tolerance.free_goal_vel = false;
-    goal_tolerance.complete_global_plan = false;
+    goal_tolerance.complete_global_plan = true;
+    goal_tolerance.use_docking = false;
+    goal_tolerance.goal_frame_id = "map";
+    goal_tolerance.xy_goal_tolerance_dock = 0.4;
+    goal_tolerance.yaw_goal_tolerance_dock = 0.4;
+
 
     // Obstacles
 
