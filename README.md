@@ -41,3 +41,4 @@ Go [here](https://github.com/sphanit/CoHAN_Planner/tree/master) for ros-melodic 
 
 3. Once the ```/tracked_humans``` topic is available, the system automatically starts planning human aware paths and trajectories. 
 4. [CoHAN_Navigation](https://github.com/sphanit/CoHAN_Navigation/tree/kinetic-devel) package provides some configuration files and examples for testing the system. It is strongly suggested to check these before you start experimenting.
+5. This branch provides additional feature of docking the robot after the end of goal to reach a precise position. Use dynamic re-configure to enable or disable this and to adjust the parameters.
