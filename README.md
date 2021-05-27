@@ -20,7 +20,7 @@ Go [here](https://github.com/sphanit/CoHAN_Planner/tree/master) for ros-melodic 
 	```
 	mkdir -p cohan_ws/src
 	cd 	cohan_ws/src
-	git clone --recurse-submodules https://github.com/sphanit/CoHAN_Planner.git -b kinetic-devel
+	git clone --recurse-submodules https://github.com/sphanit/CoHAN_Planner.git -b docking-kinetic
 	git clone https://github.com/sphanit/navigation.git -b cohan_kinetic
 	cd ..	
 	```
