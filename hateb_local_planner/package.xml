@@ -45,6 +45,7 @@
   <depend>human_path_prediction</depend>
   <depend>std_srvs</depend>
   <depend>visualization_msgs</depend>
+  <depend>base_nav</depend>
 
   <export>
     <nav_core plugin="${prefix}/hateb_local_planner_plugin.xml"/>

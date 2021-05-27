@@ -110,6 +110,10 @@ void HATebConfig::loadRosParamFromNodeHandle(const ros::NodeHandle& nh)
   nh.param("yaw_goal_tolerance", goal_tolerance.yaw_goal_tolerance, goal_tolerance.yaw_goal_tolerance);
   nh.param("free_goal_vel", goal_tolerance.free_goal_vel, goal_tolerance.free_goal_vel);
   nh.param("complete_global_plan", goal_tolerance.complete_global_plan, goal_tolerance.complete_global_plan);
+  nh.param("complete_global_plan", goal_tolerance.use_docking, goal_tolerance.use_docking);
+  nh.param("complete_global_plan", goal_tolerance.goal_frame_id, goal_tolerance.goal_frame_id);
+  nh.param("complete_global_plan", goal_tolerance.xy_goal_tolerance_dock, goal_tolerance.xy_goal_tolerance_dock);
+  nh.param("complete_global_plan", goal_tolerance.yaw_goal_tolerance_dock, goal_tolerance.yaw_goal_tolerance_dock);
 
   // Obstacles
   nh.param("min_obstacle_dist", obstacles.min_obstacle_dist, obstacles.min_obstacle_dist);
@@ -356,6 +360,10 @@ void HATebConfig::reconfigure(HATebLocalPlannerReconfigureConfig& cfg)
   goal_tolerance.xy_goal_tolerance = cfg.xy_goal_tolerance;
   goal_tolerance.yaw_goal_tolerance = cfg.yaw_goal_tolerance;
   goal_tolerance.free_goal_vel = cfg.free_goal_vel;
+  goal_tolerance.use_docking = cfg.use_docking;
+  // goal_tolerance.goal_frame_id = cfg.goal_frame_id;
+  goal_tolerance.xy_goal_tolerance_dock = cfg.xy_goal_tolerance_dock;
+  goal_tolerance.yaw_goal_tolerance_dock = cfg.yaw_goal_tolerance_dock;
 
   // Obstacles
   obstacles.min_obstacle_dist = cfg.min_obstacle_dist;

@@ -1,0 +1,3 @@
+[submodule "base_nav"]
+	path = base_nav
+	url = https://github.com/sphanit/base_nav.git

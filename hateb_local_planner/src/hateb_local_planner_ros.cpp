@@ -296,8 +296,8 @@ void  HATebLocalPlannerROS::humansCB(const human_msgs::TrackedHumans &tracked_hu
   std::vector<double> humans_behind;
   // std::vector<bool> humans_behind_ids;
 
-	geometry_msgs::TransformStamped transformStamped;
-	transformStamped = tf_->lookupTransform("map", "base_link",ros::Time(0),ros::Duration(0.5));
+  geometry_msgs::TransformStamped transformStamped;
+  transformStamped = tf_->lookupTransform("map", "base_link",ros::Time(0),ros::Duration(0.5));
   auto xpos = transformStamped.transform.translation.x;
   auto ypos = transformStamped.transform.translation.y;
   auto ryaw = tf2::getYaw(transformStamped.transform.rotation);
@@ -617,9 +617,18 @@ uint32_t HATebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::Pose
   double dx = global_goal.pose.position.x - robot_pose_.x();
   double dy = global_goal.pose.position.y - robot_pose_.y();
   double delta_orient = g2o::normalize_theta( tf2::getYaw(global_goal.pose.orientation) - robot_pose_.theta() );
-  if(fabs(std::sqrt(dx*dx+dy*dy)) < cfg_.goal_tolerance.xy_goal_tolerance
-    && fabs(delta_orient) < cfg_.goal_tolerance.yaw_goal_tolerance
-    && (!cfg_.goal_tolerance.complete_global_plan || via_points_.size() == 0) && goal_ctrl)
+
+  double g_xy_goal_tolerance = cfg_.goal_tolerance.xy_goal_tolerance;
+  double g_yaw_goal_tolerance = cfg_.goal_tolerance.yaw_goal_tolerance;
+  bool complete_global_plan = !cfg_.goal_tolerance.use_docking;
+  if(cfg_.goal_tolerance.use_docking){
+    g_yaw_goal_tolerance  = std::max(cfg_.goal_tolerance.yaw_goal_tolerance, cfg_.goal_tolerance.yaw_goal_tolerance_dock);
+    g_xy_goal_tolerance  = std::max(cfg_.goal_tolerance.xy_goal_tolerance, cfg_.goal_tolerance.xy_goal_tolerance_dock);
+  }
+
+
+  if(fabs(std::sqrt(dx*dx+dy*dy)) < g_xy_goal_tolerance && fabs(delta_orient) < g_yaw_goal_tolerance
+    && (!complete_global_plan || via_points_.size() == 0) && goal_ctrl)
   {
     goal_reached_ = true;
     return mbf_msgs::ExePathResult::SUCCESS;
@@ -1193,6 +1202,27 @@ bool HATebLocalPlannerROS::isGoalReached()
     backed_off =  false;
     reset_states=true;
     stuck_human_id = -1;
+
+    if(cfg_.goal_tolerance.use_docking){
+      //Action client for Docking
+      DockClient docking_client_("docking_node/dock",true);
+
+      while(!docking_client_.waitForServer()){
+        ROS_INFO("Waiting for docking server to start");
+      }
+      base_nav::DockGoal tar_goal;
+      tar_goal.targetPose = global_plan_.back();
+      docking_client_.sendGoal(tar_goal);
+      ROS_INFO("Docking...");
+
+      docking_client_.waitForResult();
+
+      if(docking_client_.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+        ROS_INFO("Docking successful!");
+      else
+        ROS_INFO("Docking unsuccessful");
+    }
+
     return true;
   }
   return false;
