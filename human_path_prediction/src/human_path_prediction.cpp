@@ -582,10 +582,10 @@ bool HumanPathPrediction::predictHumansExternal(
     tf::StampedTransform robot_to_map_tf, human_to_map_tf;
     bool transforms_found = false;
     try {
-      tf_.lookupTransform(map_frame_id_, robot_frame_id_, ros::Time::now(),
+      tf_.lookupTransform(map_frame_id_, robot_frame_id_, ros::Time(0),
                           robot_to_map_tf);
       tf_.lookupTransform(map_frame_id_, tracked_humans.header.frame_id,
-                          ros::Time::now(), human_to_map_tf);
+                          ros::Time(0), human_to_map_tf);
       transforms_found = true;
     } catch (tf::LookupException &ex) {
       ROS_ERROR_NAMED(NODE_NAME, "No Transform available Error: %s\n",
@@ -739,10 +739,10 @@ bool HumanPathPrediction::predictHumansBehind(
   tf::StampedTransform robot_to_map_tf, human_to_map_tf;
   bool transforms_found = false;
   try {
-    tf_.lookupTransform(map_frame_id_, robot_frame_id_, ros::Time::now(),
+    tf_.lookupTransform(map_frame_id_, robot_frame_id_, ros::Time(0),
                         robot_to_map_tf);
     tf_.lookupTransform(map_frame_id_, tracked_humans.header.frame_id,
-                        ros::Time::now(), human_to_map_tf);
+                        ros::Time(0), human_to_map_tf);
     transforms_found = true;
   } catch (tf::LookupException &ex) {
     ROS_ERROR_NAMED(NODE_NAME, "No Transform available Error: %s\n",
@@ -895,10 +895,10 @@ bool HumanPathPrediction::predictHumansGoal(
   tf::StampedTransform robot_to_map_tf, human_to_map_tf;
   bool transforms_found = false;
   try {
-    tf_.lookupTransform(map_frame_id_, robot_frame_id_, ros::Time::now(),
+    tf_.lookupTransform(map_frame_id_, robot_frame_id_, ros::Time(0),
                         robot_to_map_tf);
     tf_.lookupTransform(map_frame_id_, tracked_humans.header.frame_id,
-                        ros::Time::now(), human_to_map_tf);
+                        ros::Time(0), human_to_map_tf);
     transforms_found = true;
   } catch (tf::LookupException &ex) {
     ROS_ERROR_NAMED(NODE_NAME, "No Transform available Error: %s\n",
@@ -1214,15 +1214,15 @@ bool HumanPathPrediction::transformPoseTwist(
             tf::poseStampedMsgToTF(pose_ut, pose_tf);
             tf::StampedTransform start_pose_to_plan_transform;
             tf_.waitForTransform(to_frame, pose_ut.header.frame_id,
-                                 ros::Time::now(), ros::Duration(0.5));
-            tf_.lookupTransform(to_frame, pose_ut.header.frame_id, ros::Time::now(),
+                                 ros::Time(0), ros::Duration(0.5));
+            tf_.lookupTransform(to_frame, pose_ut.header.frame_id, ros::Time(0),
                                 start_pose_to_plan_transform);
             pose_tf.setData(start_pose_to_plan_transform * pose_tf);
             pose_tf.frame_id_ = to_frame;
             tf::poseStampedTFToMsg(pose_tf, pose);
 
             geometry_msgs::Twist start_twist_to_plan_transform;
-            tf_.lookupTwist(to_frame, twist.header.frame_id, ros::Time::now(),
+            tf_.lookupTwist(to_frame, twist.header.frame_id, ros::Time(0),
                             ros::Duration(0.1), start_twist_to_plan_transform);
             twist.twist.linear.x -= start_twist_to_plan_transform.linear.x;
             twist.twist.linear.y -= start_twist_to_plan_transform.linear.y;
