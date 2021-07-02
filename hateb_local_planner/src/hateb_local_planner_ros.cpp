@@ -392,7 +392,7 @@ void  HATebLocalPlannerROS::humansCB(const human_msgs::TrackedHumans &tracked_hu
   if(temp_dist_idx.size()>0){
     std::sort(temp_dist_idx.begin(),temp_dist_idx.end());
 
-    if(human_dists[temp_dist_idx[0].second-1]<=2.5){
+    if(human_dists[temp_dist_idx[0].second-1]<=0.5){
       isDistunderThreshold = true;
       }
     else{
