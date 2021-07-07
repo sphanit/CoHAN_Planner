@@ -1737,11 +1737,11 @@ bool HATebLocalPlannerROS::transformHumanPlan(
     tf2::Stamped<tf2::Transform> tf_pose_stamped;
     geometry_msgs::PoseStamped transformed_pose;
     tf2::Transform tf_pose;
-    auto agent_start_pose = agent_plan[0];
+    auto human_start_pose = human_plan[0];
     for (auto &human_pose : human_plan) {
       if(isMode>=1){
-        if(std::hypot(agent_pose.pose.pose.position.x - agent_start_pose.pose.pose.position.x,
-                      agent_pose.pose.pose.position.y - agent_start_pose.pose.pose.position.y) > (cfg_.agent.radius)){
+        if(std::hypot(human_pose.pose.pose.position.x - human_start_pose.pose.pose.position.x,
+                      human_pose.pose.pose.position.y - human_start_pose.pose.pose.position.y) > (cfg_.human.radius)){
           unsigned int mx, my;
           if(costmap_->worldToMap(human_pose.pose.pose.position.x,human_pose.pose.pose.position.y,mx,my)){
             if(costmap_->getCost(mx,my)>=254)
