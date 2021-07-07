@@ -807,7 +807,7 @@ uint32_t HATebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::Pose
           continue;
         }
 
-        if(isMode >= 1)
+        if(isMode > 1)
                 continue;
 
         // transform human plans
@@ -1402,7 +1402,7 @@ void HATebLocalPlannerROS::updateHumanViaPointsContainers(
   auto itr = humans_via_points_map_.begin();
   while (itr != humans_via_points_map_.end())
   {
-    if (transformed_human_plan_vel_map.find(itr->first) == transformed_human_plan_vel_map.end()){
+    if (transformed_human_plan_vel_map.count(itr->first) == 0){
       itr = humans_via_points_map_.erase(itr);
     }
     else
@@ -1736,12 +1736,16 @@ bool HATebLocalPlannerROS::transformHumanPlan(
     tf2::Stamped<tf2::Transform> tf_pose_stamped;
     geometry_msgs::PoseStamped transformed_pose;
     tf2::Transform tf_pose;
+    auto agent_start_pose = agent_plan[0];
     for (auto &human_pose : human_plan) {
       if(isMode>=1){
-        unsigned int mx, my;
-        if(costmap_->worldToMap(human_pose.pose.pose.position.x,human_pose.pose.pose.position.y,mx,my)){
-          if(costmap_->getCost(mx,my)>=254)
-            break;
+        if(std::hypot(agent_pose.pose.pose.position.x - agent_start_pose.pose.pose.position.x,
+                      agent_pose.pose.pose.position.y - agent_start_pose.pose.pose.position.y) > (cfg_.agent.radius)){
+          unsigned int mx, my;
+          if(costmap_->worldToMap(human_pose.pose.pose.position.x,human_pose.pose.pose.position.y,mx,my)){
+            if(costmap_->getCost(mx,my)>=254)
+              break;
+          }
         }
       }
       tf2::fromMsg(human_pose.pose.pose, tf_pose);
