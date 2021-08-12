@@ -8,6 +8,12 @@ The system uses [Human-Aware Timed Elastic Band](https://hal.laas.fr/hal-0292202
 
 Go [here](https://github.com/sphanit/CoHAN_Planner/tree/kinetic-devel) for ros-kinetic instalaltion guide.
 
+# Citation 
+If you are using our code for your research, please consider citing at least one of our papers (bibtex below).
+
+- P. T. Singamaneni, A. Favier, and R. Alami, “Human-aware navigation planner for diverse human-robot contexts,” in IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2021.
+- P. T. Singamaneni and R. Alami, “Hateb-2: Reactive planning and decision making in human-robot co-navigation,” in International Conference on Robot & Human Interactive Communication, 2020.
+
 # Installation (ros-melodic)
 1. This installation assumes that the [ROS](http://wiki.ros.org/ROS/Installation) is already installed along with the [2D navigation stack](http://wiki.ros.org/navigation). Otherwise please install them before continuing to next steps.
 2. Install the requirements
@@ -41,6 +47,23 @@ Go [here](https://github.com/sphanit/CoHAN_Planner/tree/kinetic-devel) for ros-k
 4. [CoHAN_Navigation](https://github.com/sphanit/CoHAN_Navigation.git) package provides some configuration files and examples for testing the system. It is strongly suggested to check these before you start experimenting.
 5. This branch provides additional feature of docking the robot after the end of goal to reach a precise position. Use dynamic re-configure to enable or disable this and to adjust the parameters.
  
-
-
-
+# Bibtex
+CoHAN
+```
+@inproceedings{singamaneni2021human,
+  author = {Singamaneni, Phani Teja and Favier, Anthony and Alami, Rachid},
+  title = {Human-Aware Navigation Planner for Diverse Human-Robot Ineraction Contexts},
+  booktitle = {IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year = {2021},
+}
+```
+HATEB
+```
+@inproceedings{singamaneni2020hateb,
+  author = {Singamaneni, Phani Teja and Alami, Rachid},
+  title = {HATEB-2: Reactive Planning and Decision making in Human-Robot Co-navigation},
+  booktitle = {International Conference on Robot \& Human Interactive Communication},
+  year = {2020},
+  doi={10.1109/RO-MAN47096.2020.9223463}}
+}
+```
