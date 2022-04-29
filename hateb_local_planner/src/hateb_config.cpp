@@ -360,6 +360,7 @@ void HATebConfig::reconfigure(HATebLocalPlannerReconfigureConfig& cfg)
   goal_tolerance.xy_goal_tolerance = cfg.xy_goal_tolerance;
   goal_tolerance.yaw_goal_tolerance = cfg.yaw_goal_tolerance;
   goal_tolerance.free_goal_vel = cfg.free_goal_vel;
+  goal_tolerance.complete_global_plan = cfg.complete_global_plan;
   goal_tolerance.use_docking = cfg.use_docking;
   // goal_tolerance.goal_frame_id = cfg.goal_frame_id;
   goal_tolerance.xy_goal_tolerance_dock = cfg.xy_goal_tolerance_dock;
