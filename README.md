@@ -1,7 +1,15 @@
 # Latest Version
-The latest version of code with improvements and invisible humans can be found here: https://github.com/sphanit/cohan_planner_multi
+#
+#
+#
+#
 
+The latest stable version of code with improvements and invisible humans can be found here: https://github.com/sphanit/cohan_planner_multi
 
+#
+#
+#
+#
 # Co-operative Human Aware Navigation (CoHAN) Planner
 
 The CoHAN Planner provides a set of packages for the Human-Aware Robot Navigation in various contexts. These packages built over ROS navigation stack, includes humans into both global and local planners to plan a human-aware trajectory for the robot considering several social criteria. Our system also provides multiple modes of planning that shift based on the context or can be set manually by simple changing the parameters.  
