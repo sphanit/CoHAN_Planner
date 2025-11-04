@@ -1,3 +1,4 @@
+## The latest version is maintained here: https://github.com/sphanit/CoHAN2.0
 
 # Co-operative Human Aware Navigation (CoHAN) Planner
 
